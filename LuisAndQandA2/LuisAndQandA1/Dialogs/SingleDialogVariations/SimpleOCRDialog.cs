@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using Microsoft.Bot.Builder.Dialogs;
 using System;
 using System.Threading.Tasks;
@@ -25,14 +30,15 @@ using System.Text;
 
 namespace LuisAndQandA1.Dialogs
 {
-    public class PredictionResult {
-        public string PredictionTag { get; set; }
-        public decimal PredictionProbability { get; set; }
-            
-    }
+    //public class PredictionResult
+    //{
+    //    public string PredictionTag { get; set; }
+    //    public decimal PredictionProbability { get; set; }
+
+    //}
 
     [Serializable]
-    public class SimpleCustomImageCaptionDialog : IDialog<string>
+    public class SimpleOCRDialog : IDialog<string>
     {
         private readonly ICaptionService captionService = new MicrosoftCognitiveCaptionService();
         private int attempts = 3;

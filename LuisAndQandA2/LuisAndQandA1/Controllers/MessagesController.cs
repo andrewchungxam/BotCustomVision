@@ -26,6 +26,7 @@ namespace LuisAndQandA1
                 //await Conversation.SendAsync(activity, () => new Dialogs.BasicLuisDialog());
 
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleImageCaptionDialog());
+
                 await Conversation.SendAsync(activity, () => new Dialogs.SimpleCustomImageCaptionDialog());
 
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleRootDialog());
