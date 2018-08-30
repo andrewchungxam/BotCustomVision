@@ -35,15 +35,143 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using LuisAndQandA1.Services;
+using ZXing;
+using ZXing.Common;
+using System.Drawing;
 
 namespace LuisAndQandA1.Dialogs
 {
-    [Serializable]
+    public class BarcodeScannerService
+    {
+        private readonly IBarcodeReader barcodeReader;
+
+        public BarcodeScannerService()
+        {
+            barcodeReader = new BarcodeReader
+            {
+                AutoRotate = true,
+                Options = new DecodingOptions
+                {
+                    TryHarder = true
+                }
+            };
+        }
+
+        //        private void DecodeBarcode(byte[] byteArrayFile)
+        public String DecodeBarcode(byte[] byteArrayFile)
+        {
+
+            var newStringBuilder = new StringBuilder();
+
+            try
+            {
+                //using (var bitmap = (Bitmap)Bitmap.FromFile(barcodeImageFile))
+                //{
+                    try
+                    {
+                        Bitmap bmp;
+                        using (var ms = new MemoryStream(byteArrayFile))
+                        {
+                            bmp = new Bitmap(ms);
+                        }
+
+                        var result = barcodeReader.Decode(bmp);
+                        bmp.Dispose();
+
+                        //var result = barcodeReader.Decode(bitmap);
+                        //Console.WriteLine("Result: {0}", result.Text);
+                        //resultWriter.WriteLine("RESULT:{0}", result.Text);
+                        //resultWriter.WriteLine("FORMAT: {0}", result.BarcodeFormat);
+
+                        foreach (var metaData in result.ResultMetadata)
+                        {
+                            newStringBuilder.Append($"Metadata:{metaData.Key}: {metaData.Value}");
+                            newStringBuilder.Append(Environment.NewLine);
+                            newStringBuilder.Append($"Barcode Format: {result.BarcodeFormat.ToString()}");
+                            newStringBuilder.Append(Environment.NewLine);
+                            newStringBuilder.Append($"Text:{result.ToString()}");
+                            //resultWriter.WriteLine("METADATA:{0}:{1}", metaData.Key, metaData.Value);
+                    }
+
+                    //result.Text;
+
+
+                    //if (result != null)
+                    //{
+
+
+                    //}
+
+
+
+                        return newStringBuilder.ToString();
+
+                    }
+                    catch (Exception innerExc)
+                    {
+                        Console.WriteLine("Exception: {0}", innerExc.Message);
+                        return "Inner Execption";
+
+                        //resultWriter.Write(innerExc.ToString());
+                    }
+                //}
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Exception: {0}", exc.Message);
+                return "Exception";
+            }
+        }
+
+        //private void DecodeBarcode(string fileName)
+        //{
+        //    try
+        //    {
+        //        //Console.WriteLine("Decoding image: {0}", fileName);
+
+        //        //var barcodeImageFile = fileName;
+        //        //var barcodeResultFile = fileName + ".txt";
+        //        //using (var resultWriter = new StreamWriter(barcodeResultFile, false, Encoding.UTF8))
+
+
+
+        //        using (var bitmap = (Bitmap)Bitmap.FromFile(barcodeImageFile))
+        //        {
+        //            try
+        //            {
+        //                var result = barcodeReader.Decode(bitmap);
+
+        //                Console.WriteLine("Result: {0}", result.Text);
+
+        //                resultWriter.WriteLine("RESULT:{0}", result.Text);
+        //                resultWriter.WriteLine("FORMAT: {0}", result.BarcodeFormat);
+        //                foreach (var metaData in result.ResultMetadata)
+        //                {
+        //                    resultWriter.WriteLine("METADATA:{0}:{1}", metaData.Key, metaData.Value);
+        //                }
+        //            }
+        //            catch (Exception innerExc)
+        //            {
+        //                Console.WriteLine("Exception: {0}", innerExc.Message);
+
+        //                resultWriter.Write(innerExc.ToString());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        Console.WriteLine("Exception: {0}", exc.Message);
+        //    }
+        //}
+    }
+
+        [Serializable]
     public class SimpleZXingBarcodeDialog : IDialog<string>
     {
         private readonly ICaptionService captionService = new MicrosoftCognitiveCaptionService();
         private int attempts = 3;
         private string itemType = "headphones";
+
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -74,25 +202,12 @@ namespace LuisAndQandA1.Dialogs
                 byte[] sampleByteArray = await GetImageByteStreamDirectly(connector, imageAttachment);
                 context.PostAsync($"Received image, transcribing images into text...");
 
+                var bcss = new BarcodeScannerService();
+                var returnedString = bcss.DecodeBarcode(sampleByteArray);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                await context.PostAsync($"Returned Barcode Scanner: {returnedString}");
+                
+                
 
                 //{
                 //END VERSION 2
