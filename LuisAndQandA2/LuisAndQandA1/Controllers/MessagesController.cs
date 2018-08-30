@@ -28,8 +28,11 @@ namespace LuisAndQandA1
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleImageCaptionDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleCustomImageCaptionDialog());
 
-                await Conversation.SendAsync(activity, () => new Dialogs.SimpleOCRDialog());
-                
+                //await Conversation.SendAsync(activity, () => new Dialogs.SimpleOCRDialog());
+
+                await Conversation.SendAsync(activity, () => new Dialogs.SimpleZXingBarcodeDialog());
+
+
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleRootDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimplePasswordResetDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.CarouselCardsDialog());
