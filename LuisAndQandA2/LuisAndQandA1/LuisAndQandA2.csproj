@@ -137,6 +137,7 @@
     <Compile Include="Dialogs\SingleDialogVariations\ResetPasswordDialog.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\SimpleCustomImageCaptionDialog.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\SimpleImageCaptionDialog.cs" />
+    <Compile Include="Dialogs\SingleDialogVariations\SimpleOCRDialog.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\SimpleRootDialog.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\RootEchoDialog.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\SimpleAgeDialog.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ICaptionService.cs" />
     <Compile Include="Services\MicrosoftCognitiveCaptionService.cs" />
+    <Compile Include="Services\OCRResponseClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
