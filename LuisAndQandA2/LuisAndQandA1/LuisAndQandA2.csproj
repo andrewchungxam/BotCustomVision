@@ -132,9 +132,15 @@
     <Compile Include="Dialogs\CoordiatedDialogVariations\CoordinatedNameDialog.cs" />
     <Compile Include="Dialogs\CoordiatedDialogVariations\CoordinatedQandADialog.cs" />
     <Compile Include="Dialogs\CoordiatedDialogVariations\CoordinatedQandADialog2.cs" />
+    <Compile Include="Dialogs\CoordinateCustomerServiceDialog\CoordinatedComputerVisionCaptionDialog.cs" />
+    <Compile Include="Dialogs\CoordinateCustomerServiceDialog\CoordinatedComputerVisionOCRandBarcodeDialog.cs" />
+    <Compile Include="Dialogs\CoordinateCustomerServiceDialog\CoordinatedCustomerServiceDialog.cs" />
+    <Compile Include="Dialogs\CoordinateCustomerServiceDialog\CoordinatedCustomImageCaptionDialog.cs" />
+    <Compile Include="Dialogs\Helpers\CustomerInfo.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\BasicLuisDialog.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\CarouselCardsDialog.cs" />
     <Compile Include="Dialogs\CoordiatedDialogVariations\CoordinatedConversationDialogcs.cs" />
+    <Compile Include="Dialogs\SingleDialogVariations\FirstTimeConversationDialog.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\PromptDate.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\PromptStringRegex.cs" />
     <Compile Include="Dialogs\SingleDialogVariations\QandADialog.cs" />

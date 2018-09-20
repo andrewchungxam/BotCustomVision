@@ -32,7 +32,7 @@ namespace LuisAndQandA1.Dialogs
 
         private async Task SendWelcomeMessageAsync(IDialogContext context)
         {
-            await context.PostAsync("Hi, glad you're here!  Enter you user details!");
+            await context.PostAsync("Hi - we're glad you're here.  Please enter your customer information so can best help you and reference your support ticket in the future.");
 
             context.Call(new SimpleNameDialog(), this.NameDialogResumeAfter);
         }

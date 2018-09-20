@@ -18,24 +18,33 @@ namespace LuisAndQandA1
         {
             if (activity.Type == ActivityTypes.Message)
             {
+//SINGLE DIALOG ONLY
                 //await Conversation.SendAsync(activity, () => new Dialogs.RootEchoDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.QandADialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.QandADialog2());
-
-
+                
                 //await Conversation.SendAsync(activity, () => new Dialogs.BasicLuisDialog());
 
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleImageCaptionDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleCustomImageCaptionDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleOCRDialog());
-                await Conversation.SendAsync(activity, () => new Dialogs.SimpleZXingBarcodeDialog());
-
+                //await Conversation.SendAsync(activity, () => new Dialogs.SimpleZXingBarcodeDialog());
 
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimpleRootDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.SimplePasswordResetDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.CarouselCardsDialog());
+
+
+
+                //COORDINATED
                 //await Conversation.SendAsync(activity, () => new Dialogs.CoordinatedConversationDialog());
                 //await Conversation.SendAsync(activity, () => new Dialogs.CoordinatedLuisDialog());
+
+                //CUSTOMER SERVICE COORDINATED
+
+                await Conversation.SendAsync(activity, () => new Dialogs.CoordinatedCustomerServiceDialog());
+
+
 
             }
             else
